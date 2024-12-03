@@ -89,7 +89,8 @@ public class UdpNetworkServer implements NetworkServer<DatagramPacket> {
 
 							@Override
 							public void send(String str) {
-								var sendPacket = new DatagramPacket(str.getBytes(), str.length(), address, packet.getPort());
+								byte[] sendBytes = str.getBytes();
+								var sendPacket = new DatagramPacket(sendBytes, sendBytes.length, address, packet.getPort());
 								try {
 									socket.send(sendPacket);
 								} catch (IOException e) {
